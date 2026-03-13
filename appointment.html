@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Velvet Trim | Book Appointment</title>
+<link rel="stylesheet" href="appointment.css">
+</head>
+
+<body>
+
+<div class="booking-container">
+
+<h1>Book Your Appointment</h1>
+<p>The Velvet Trim Salon</p>
+
+<form id="bookingForm">
+
+<input type="text" id="name" placeholder="Your Name" required>
+
+<input type="tel" id="phone" placeholder="Phone Number" required>
+
+<select id="service" required>
+<option value="">Select Service</option>
+<option>Haircut</option>
+<option>Hair Styling</option>
+<option>Beard Trim</option>
+<option>Hair Coloring</option>
+</select>
+
+<input type="date" id="date" required>
+
+<input type="time" id="time" required>
+
+<button type="submit">Book Appointment</button>
+
+</form>
+
+<p id="message"></p>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AlzaSyBYe05TmBzh1-f3arisvhp Sk5fG9xY8_4A"
+  authDomain: "https://velvettrim-6da3a.firebaseapp.com",
+  projectId: "velvettrim-6da3a"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+document.getElementById("bookingForm").addEventListener("submit", async function(e){
+
+e.preventDefault();
+
+let name = document.getElementById("name").value;
+let phone = document.getElementById("phone").value;
+let service = document.getElementById("service").value;
+let date = document.getElementById("date").value;
+let time = document.getElementById("time").value;
+
+await addDoc(collection(db,"appointments"),{
+name:name,
+phone:phone,
+service:service,
+date:date,
+time:time,
+status:"pending"
+});
+
+alert("Appointment Sent!");
+
+});
+
+</script>
+
+<script src="appointment.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+body{
+font-family: Arial;
+background-image: url("bg.jpg");
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+margin:0;
+}
+
+.booking-container{
+background:white;
+    background-image: url("bg.jpg");
+    background-size: cover;
+padding:30px;
+border-radius:10px;
+width:350px;
+text-align:center;
+box-shadow:0 5px 20px rgba(0,0,0,0.3);
+}
+
+h1{
+margin-bottom:5px;
+width: 350px;
+font-family: Times New Roman;
+}
+
+p{
+color:grey;
+font-family:arial;
+font-size: 20px;
+}
+
+input, select{
+width:100%;
+padding:10px;
+margin:10px 0;
+border-radius:5px;
+border:1px solid #ccc;
+}
+
+button{
+width:100%;
+padding:12px;
+background:black;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+font-size:16px;
+}
+
+button:hover{
+background:#444;
+}
+
+#message{
+margin-top:15px;
+color:green;
+font-weight:bold;
+}
