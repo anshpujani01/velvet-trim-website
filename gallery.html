@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>The Velvet Trim</title>
+
+<style>
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+padding:20px;
+}
+
+.gallery img{
+width: 200%;
+height:400px;
+object-fit:cover;
+border-radius:20px;
+border: 5px solid black;;
+}
+body{
+    background: #8A244B;
+    /*color: white;*/
+    background-image: url("bg.jpg");
+    background-size: cover;
+}
+#booking{
+    padding: 10px 22px;
+    background: #c08b5c;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition-duration: 0.3s;
+    text-align: center;
+    margin-left: 400px;
+}
+#head{
+    font-size: 27px;
+    margin-bottom: 20px;
+    font-family: Times New Roman;
+    display: block;
+    text-align: center;
+}
+#sub{
+    font-size: 30px;
+    margin-left: 150px;
+    font-family: cursive;
+}
+</style>
+
+</head>
+
+<body >
+    <section class="hero">
+
+<h1 id="head">Welcome to The Velvet Trim</h1>
+
+<p id="sub">Premium Haircuts, Beard Styling, and Grooming for the Modern Man.</p>
+
+<a href="appointment.html">
+<button id="booking">Book Appointment</button>
+</a>
+
+</section>
+
+<section class="gallery">
+
+<img src="haircut1.jpg">
+<b></b>
+<img src="haircut2.jpg">
+<b></b>
+<img src="haircut3.jpg">
+<b></b>
+<img src="haircut4.jpg">
+<b></b>
+<img src="haircut5.jpg">
+<b></b>
+<img src="haircut6.jpg">
+</section>
+</footer>
+</body>
+</html>
