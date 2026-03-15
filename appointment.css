@@ -59,3 +59,18 @@ margin-top:15px;
 color:green;
 font-weight:bold;
 }
+#paymentSection{
+    display: flex;
+}
+#paymentSection button{
+
+width:100%;
+margin-top:10px;
+justify-content: center
+align-items: end;;
+}
+#paymentSection{
+display:block;
+margin-top:15px;
+}
+</style>
