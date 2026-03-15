@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,35 +14,49 @@
 
 <h1>Book Your Appointment</h1>
 <p>The Velvet Trim Salon</p>
+
 <form id="bookingForm">
 
 <input type="text" id="name" placeholder="Your Name" required>
 
 <input type="tel" id="phone" placeholder="Phone Number" required>
 
-<select id="service" required >
+<select id="service" required>
 <option value="">Select Service</option>
 <option>Haircut (50₹)</option>
-<option>Haircut+Beard (70₹)</option>
+<option>Haircut + Beard (70₹)</option>
 <option>Hair Styling (30₹)</option>
 <option>Beard Trim (30₹)</option>
-<option>Head massage (50₹)</option>
-<option>Head wash (50₹)</option>
+<option>Head Massage (50₹)</option>
+<option>Head Wash (50₹)</option>
 </select>
 
 <input type="date" id="date" required>
 
 <input type="time" id="time" required>
-<div>
+
+<label>Select Payment Method</label>
+
+<select id="paymentMethod" required>
+<option value="">Choose Payment</option>
+<option value="online">Online Payment</option>
+<option value="cash">Cash at Salon</option>
+</select>
+
 <button type="submit">Book Appointment</button>
-    <a href="payment.html">
-<div id="paymentSection" style="display:none; margin-top:20px;">
-<button type="button" onclick="goToPayment()">Pay Now</button></a>
+
 </form>
 
-<p id="message"></p>
+<!-- Pay Now Button -->
+<div id="paymentSection" style="display:none; margin-top:20px;">
+<button onclick="goToPayment()">Pay Now</button>
 </div>
-<!-- Payment Button (Hidden at first) -->
+
+<p id="message"></p>
+
+</div>
+
+
 <script type="module">
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
@@ -65,39 +80,42 @@ let phone = document.getElementById("phone").value;
 let service = document.getElementById("service").value;
 let date = document.getElementById("date").value;
 let time = document.getElementById("time").value;
+let paymentMethod = document.getElementById("paymentMethod").value;
+
 await addDoc(collection(db,"appointments"),{
 name:name,
 phone:phone,
 service:service,
 date:date,
 time:time,
+payment:paymentMethod,
 status:"pending"
 });
 
-// WhatsApp message
 let message = `New Appointment Booking
 
 Name: ${name}
 Phone: ${phone}
 Service: ${service}
 Date: ${date}
-Time: ${time}`;
+Time: ${time}
+Payment: ${paymentMethod}`;
 
 let whatsappURL = "https://wa.me/919485877545?text=" + encodeURIComponent(message);
 
 window.open(whatsappURL,"_blank");
 
 alert("Appointment Sent!");
-});
-document.getElementById("bookingForm").addEventListener("submit", function(e){
-e.preventDefault();
 
-alert("Appointment Sent!");
-
+if(paymentMethod === "online"){
 document.getElementById("paymentSection").style.display = "block";
+}
 
 });
 
+</script>
+
+<script>
 function goToPayment(){
 window.location.href = "payment.html";
 }
