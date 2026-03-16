@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Check Appointment | The Velvet Trim</title>
+
+<style>
+
+body{
+font-family: Arial;
+text-align:center;
+background-image: url("bg.jpg");
+background-size: cover;
+}
+
+.container{
+width:70%;
+height: 80%;
+margin:auto;
+background:white;
+padding:20px;
+margin-top:80px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+background-image: url("bg2.jpg");
+background-size: cover;
+}
+.container h2{
+    font-size: 70px;
+    font-family: Times New Roman;
+    font-style: bolder;
+    color: black;
+}
+input{
+width:90%;
+padding:10px;
+height: 60px;
+margin:10px;
+font-size: 48px;
+}
+
+button{
+padding:30px 50px;
+background:black;
+color:white;
+border:none;
+cursor:pointer;margin-top: 30px;
+font-size: 45px;
+}
+
+.result{
+margin-top:20px;
+font-size: 25px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Check Your Appointment</h2>
+
+<input id="searchName" placeholder="Enter your name">
+
+<button onclick="checkAppointments()">Check Appointment</button>
+
+<div id="result" class="result"></div>
+
+</div>
+
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+
+<script>
+
+// FIREBASE CONFIG
+const firebaseConfig = {
+apiKey: "AIzaSyBYe05TmBzh1-f3arisvhpSk5fG9xY8_4A",
+authDomain: "velvettrim-6da3a.firebaseapp.com",
+projectId: "velvettrim-6da3a"
+};
+
+// INIT FIREBASE
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.firestore();
+
+
+// CHECK APPOINTMENTS
+function checkAppointments(){
+
+let name = document.getElementById("searchName").value;
+
+let result = document.getElementById("result");
+
+result.innerHTML = "Searching...";
+
+db.collection("appointments")
+.where("name","==",name)
+.get()
+.then((querySnapshot)=>{
+
+if(querySnapshot.empty){
+
+result.innerHTML = "No appointment found";
+
+return;
+
+}
+
+result.innerHTML = "";
+
+querySnapshot.forEach((doc)=>{
+
+let data = doc.data();
+
+let color = "orange";
+
+if(data.status == "Confirmed"){
+color = "green";
+}
+
+if(data.status == "Rejected"){
+color = "red";
+}
+
+result.innerHTML += `
+
+<div>
+
+<strong>${data.service}</strong><br>
+
+${data.date} ${data.time}<br>
+
+Status: <span style="color:${color}">${data.status}</span>
+
+<hr>
+
+</div>
+
+`;
+
+});
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
