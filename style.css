@@ -68,7 +68,6 @@ nav a {
     padding-left: 70px;
     color: white;
 }
-
 .hero-content {
     max-width: 300px;
 }
@@ -81,6 +80,26 @@ nav a {
     color: black;
     font-style: bolder;
 }
+
+.pole{
+width:60px;
+height:80px;
+vertical-align:middle;
+margin-left:5px;
+animation: spin 0.01s linear infinite;
+animation: glow 1.2s infinite alternate;
+
+}
+
+@keyframes glow{ 0%
+
+filter: drop-shadow(0 0 8px red) drop-shadow(0 0 15px white);
+
+100%{
+
+filter: drop-shadow(0 0 15px blue) drop-shadow(0 0 25px white);
+
+} }
 
 #highlight{
     font-size: 21px;
@@ -112,8 +131,12 @@ nav a {
     border: 10px solid #8A244B;
     color: white;
     border-radius: 10px;
+    
 }
-
+.secondary h5 {
+    font-size: 20px;
+    
+}
 /* SERVICES */
 .services {
     padding: 80px 70px;
@@ -124,6 +147,8 @@ nav a {
     font-size: 46px;
     margin-bottom: px;
     font-family: Georgia;
+    display: flex;
+    justify-content: center;
 }
 .services h4{
     font-size: 22px;

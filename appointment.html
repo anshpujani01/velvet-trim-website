@@ -70,6 +70,17 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+// TELEGRAM FUNCTION
+function sendTelegram(name, service, date){
+
+let token = "8527718566:AAH6nqCmO1JcAghFZC5pJE8yRnbfAqvn8sM";   // paste bot token here
+let chatId = "7775602454";    // paste chat id here
+
+let message = "New Booking 💈\n" + name + " booked " + service + date;
+
+fetch("https://api.telegram.org/bot" + token + "/sendMessage?chat_id=" + chatId + "&text=" + encodeURIComponent(message));
+
+}
 
 document.getElementById("bookingForm").addEventListener("submit", async function(e){
 
@@ -92,18 +103,8 @@ payment:paymentMethod,
 status:"pending"
 });
 
-let message = `New Appointment Booking
+sendTelegram(name, service, date);
 
-Name: ${name}
-Phone: ${phone}
-Service: ${service}
-Date: ${date}
-Time: ${time}
-Payment: ${paymentMethod}`;
-
-let whatsappURL = "https://wa.me/919485877545?text=" + encodeURIComponent(message);
-
-window.open(whatsappURL,"_blank");
 
 alert("Appointment Sent!");
 
